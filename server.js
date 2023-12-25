@@ -14,23 +14,23 @@ app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 
-app.get("/Login-Register-Form-Data-Crud", (req, res) => {
-  res.redirect("/Login-Register-Form-Data-Crud/create.html");
+app.get("/", (req, res) => {
+  res.redirect("/create.html");
 });
 
-app.get("/Login-Register-Form-Data-Crud/delete-data", (req, res) => {
+app.get("/delete-data", (req, res) => {
   const deleteQuery = "delete from youtube_table where id=?";
 
   connection.query(deleteQuery, [req.query.id], (err, rows) => {
     if (err) {
       console.log(err);
     } else {
-      res.redirect("/Login-Register-Form-Data-Crud/data");
+      res.redirect("/data");
     }
   });
 });
 
-app.get("/Login-Register-Form-Data-Crud/update-data", (req, res) => {
+app.get("/update-data", (req, res) => {
   connection.query(
     "select * from youtube_table where id=?",
     [req.query.id],
@@ -46,7 +46,7 @@ app.get("/Login-Register-Form-Data-Crud/update-data", (req, res) => {
   );
 });
 
-app.get("/Login-Register-Form-Data-Crud/data", (req, res) => {
+app.get("/data", (req, res) => {
   connection.query("Select * from youtube_table", (err, rows) => {
     if (err) {
       console.log(err);
@@ -56,7 +56,7 @@ app.get("/Login-Register-Form-Data-Crud/data", (req, res) => {
   });
 });
 
-app.post("/Login-Register-Form-Data-Crud/create", (req, res) => {
+app.post("/create", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   try {
@@ -67,7 +67,7 @@ app.post("/Login-Register-Form-Data-Crud/create", (req, res) => {
         if (err) {
           console.log(err);
         } else {
-          res.redirect("/Login-Register-Form-Data-Crud/data");
+          res.redirect("/data");
         }
       }
     );
@@ -77,7 +77,7 @@ app.post("/Login-Register-Form-Data-Crud/create", (req, res) => {
 });
 
 //update
-app.post("/Login-Register-Form-Data-Crud/final-update", (req, res) => {
+app.post("/final-update", (req, res) => {
   const id = req.body.hidden_id;
   const name = req.body.name;
   const email = req.body.email;
@@ -88,7 +88,7 @@ app.post("/Login-Register-Form-Data-Crud/final-update", (req, res) => {
         console.log(err);
       } else {
         console.log(id);
-        res.redirect("/Login-Register-Form-Data-Crud/data");
+        res.redirect("/data");
       }
     });
   } catch (error) {
