@@ -15,7 +15,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 
 app.get("/Login-Register-Form-Data-Crud", (req, res) => {
-  res.redirect("/create.html");
+  res.redirect("/Login-Register-Form-Data-Crud/create.html");
 });
 
 app.get("/Login-Register-Form-Data-Crud/delete-data", (req, res) => {
@@ -25,7 +25,7 @@ app.get("/Login-Register-Form-Data-Crud/delete-data", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.redirect("/data");
+      res.redirect("/Login-Register-Form-Data-Crud/data");
     }
   });
 });
